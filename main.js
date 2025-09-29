@@ -1,6 +1,6 @@
-const map = L.map('map').setView([0, 0], 2); // Placeholder coords
+const map = L.map('map').setView([0, -1], 2); //to start at the spawn of Mocodonia
 
-L.tileLayer('/tiles/{z}/{x}/{y}.png', {
+L.tileLayer('/tiles/{x},{y}.png', {
   attribution: 'MMService • Mocodonia',
-  maxZoom: 18,
+  maxZoom: 20,
 }).addTo(map);
