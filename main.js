@@ -1,15 +1,11 @@
 //declare the constant
-const map = L.map('map').setView([0, -1], 2); //the cords for Mocodonia spawn
+const map = L.map('map').setView([0, 0], 2); //Set view to center for now
 
-//define the tile layer
-L.TileLayer.MocodoniaTiles = L.TileLayer.extend({
-  getTileUrl: function(coords) {
-    return `/MMService/tiles/${coords.x},${coords.y}.png`;
-  }
-});
+//1. FIX: Define the tile layer using the URL string with standard Leaflet placeholders {x}, {y}, {z}
+const mocodoniaTilesURL = '/MMService/tiles/{x},{y}.png'; //Use {x} and {y} in the URL template
 
-//define the map tiles to the map
-new L.TileLayer.MocodoniaTiles({
+//2. FIX: Use the standard L.tileLayer factory method
+L.tileLayer(mocodoniaTilesURL, {
   attribution: 'MMService • Mocodonia',
   tileSize: 256,
   maxZoom: 20,
