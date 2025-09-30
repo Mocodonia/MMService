@@ -1,12 +1,26 @@
-//declare the constant
-const map = L.map('map').setView([0, 0], 2); //Set view to center for now
+// declare the constant
+// Keep the map view set to the zoom level of your tiles
+const map = L.map('map').setView([0, -1], 2);
 
-//1. FIX: Define the tile layer using the URL string with standard Leaflet placeholders {x}, {y}, {z}
-const mocodoniaTilesURL = '/MMService/tiles/{z}/{x},{y}.png'; //this will now include Z so that zoom will be set
+// Define the custom tile layer
+const MocodoniaTileLayer = L.TileLayer.extend({
+    getTileUrl: function(coords) {
+        // FIX: Removed the ${coords.z} part.
+        // The URL now correctly handles the negative coordinates without a zoom folder.
+        return `/MMService/tiles/${coords.x},${coords.y}.png`;
+    }
+});
 
-//2. FIX: Use the standard L.tileLayer factory method
-L.tileLayer(mocodoniaTilesURL, {
-  attribution: 'MMService • Mocodonia',
-  tileSize: 256,
-  maxZoom: 20,
+// define the map tiles to the map
+new MocodoniaTileLayer({
+    attribution: 'MMService • Mocodonia',
+    tileSize: 256,
+    
+    // CRITICAL FIX: Lock the zoom range to the level of your tiles.
+    // This prevents Leaflet from requesting Z=1 or Z=3 tiles, which don't exist.
+    minZoom: 2,
+    maxZoom: 2, 
+    
+    // Optional: Disallow the user from zooming with the scroll wheel
+    // scrollWheelZoom: false 
 }).addTo(map);
