@@ -2,6 +2,7 @@
 const map = L.map('map', {
     zoomControl: false,       
     scrollWheelZoom: false,  
+    doubleClickZoom: false, //this disables the double tap to zoom
     dragging: true,
     
     // Use the Simple Coordinate Reference System for flat, non-geographic maps
