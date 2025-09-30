@@ -13,3 +13,6 @@ These are all the things the project used.
 
 ## Progress
 Currently: I am yelling into the void trying to do this
+
+## Tile Updates
+The tiles will get updated every few days.
