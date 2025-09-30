@@ -12,7 +12,7 @@ These are all the things the project used.
 - GitHub (for the site itself)
 
 ## Progress
-Currently: I am yelling into the void trying to do this
+The map is now showing the surface, zoom is not possible at the moment, and clicking on cities is in progress maybe
 
 ## Tile Updates
 The tiles will get updated every few days.
