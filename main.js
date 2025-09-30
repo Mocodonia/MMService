@@ -1,10 +1,13 @@
-const map = L.map('map').setView([0, -1], 2); //to start at the spawn of Mocodonia
+const map = L.map('map').setView([0, -1], 2); // Mocodonia spawn
 
-L.tileLayer('', {
-  tileSize: 256,
-  maxZoom: 20,
-  attribution: 'MMService • Mocodonia',
+L.GridLayer.TileLayer = L.GridLayer.extend({
   getTileUrl: function(coords) {
     return `/MMService/tiles/${coords.x},${coords.y}.png`;
   }
+});
+
+new L.GridLayer.TileLayer({
+  attribution: 'MMService • Mocodonia',
+  tileSize: 256,
+  maxZoom: 20,
 }).addTo(map);
