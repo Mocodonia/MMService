@@ -10,6 +10,21 @@
   </style>
 </head>
 <body>
+  <div id="tile-message" style="display:none; text-align:center; margin-top:20vh; font-family:sans-serif;">
+  <h2>🌀 MMService Updating</h2>
+  <p>The map is temporarily unavailable while it is being updated.</p>
+  <p>After it comes back, you will be able to see the new changes!</p>
+</div>
+
+<script>
+  const testTile = new Image();
+  testTile.src = '/MMService/tiles/-1,-1.png';
+  testTile.onerror = () => {
+    document.getElementById('tile-message').style.display = 'block';
+  };
+</script>
+
+  
   <div id="map"></div>
   <script src="/MMService/assets/leaflet.js"></script>
   <script src="main.js"></script>
