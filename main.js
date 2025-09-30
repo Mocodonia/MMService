@@ -1,25 +1,29 @@
-// 1. Map setup: Disable all default zoom controls
+// 1. CRITICAL FIX: Add the CRS option to the map initialization
 const map = L.map('map', {
-    zoomControl: false,       // Removes +/- buttons
-    scrollWheelZoom: false,   // Disables mouse wheel zoom
-    dragging: true            // Allows basic panning
-}).setView([0, -1], 2); // sets to Mocodonia cords
+    zoomControl: false,       
+    scrollWheelZoom: false,  
+    dragging: true,
+    
+    // Use the Simple Coordinate Reference System for flat, non-geographic maps
+    crs: L.CRS.Simple 
+    
+}).setView([0, 0], 2); // Set view center to 0,0 for easier debugging
 
-// 2. Custom Tile Layer: Required for negative coordinates and cache-busting
+// 2. Custom Tile Layer (Remains necessary for negative coordinates and cache-busting)
 const MocodoniaTileLayer = L.TileLayer.extend({
     getTileUrl: function(coords) {
-        // FINAL URL: No {z} folder, handles negative x/y, and busts the browser cache
+        // Final URL: Correctly uses negative x/y from the Simple CRS
         const cacheBuster = Date.now();
         return `/MMService/tiles/${coords.x},${coords.y}.png?v=${cacheBuster}`;
     }
 });
 
-// 3. Tile Layer Initialization: Lock the zoom range
+// 3. Tile Layer Initialization (Lock the zoom and use the custom class)
 new MocodoniaTileLayer({
     attribution: 'MMService • Mocodonia',
     tileSize: 256,
     
-    // CRITICAL FIX: Lock the map to zoom level 2 (the scale of your images)
+    // Lock the map to zoom level 2 (the scale of your images)
     minZoom: 2, 
     maxZoom: 2, 
     
