@@ -5,6 +5,6 @@ L.tileLayer('', {
   maxZoom: 20,
   attribution: 'MMService • Mocodonia',
   getTileUrl: function(coords) {
-    return `/tiles/${coords.x},${coords.y}.png`;
+    return `/MMService/tiles/${coords.x},${coords.y}.png`;
   }
 }).addTo(map);
