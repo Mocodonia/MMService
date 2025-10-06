@@ -2,7 +2,7 @@
 Mocodonia Map Service, a map for Mocodonia!
 
 ## About the project
-This project makes Mocodonia have a Google Maps style. With search, reviews, and images for the different locations.
+This project makes Mocodonia have a Google Maps style. See the map as it is from the last snapshot!
 
 ## How did we make it
 These are all the things the project used.
