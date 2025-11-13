@@ -24,6 +24,13 @@
   <p>Jara jāvāskripṭa cālū asēla āṇi tarīhī tē lōḍa hōta nasēla, tara tapāsā <a href="/MMService/status.html">Sthitī</a> MMService kāma karata āhē kā tē tapāsaṇyāsāṭhī.</p>  
 </div>
 
+  <div style="position:absolute; top:10px; left:10px; z-index:1000; background:white; padding:10px; border-radius:6px; box-shadow:0 0 10px rgba(0,0,0,0.2); font-family:sans-serif;">
+  <label for="coord-search">Go to coordinates:</label>
+  <input type="text" id="coord-search" placeholder="e.g. 0,-1" />
+  <button onclick="goToCoordinates()">Search</button>
+</div>
+
+
 <script>
   const testTile = new Image();
   testTile.src = '/MMService/tiles/-1,-1.png';
