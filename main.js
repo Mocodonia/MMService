@@ -29,3 +29,26 @@ new MocodoniaTileLayer({
     maxZoom: 2, 
     
 }).addTo(map);
+
+//search functions chaos starts here
+function goToCoordinates() {
+  const input = document.getElementById('coord-search').value.trim();
+  const match = input.match(/^(-?\d+),\s*(-?\d+)$/);
+
+  if (!match) {
+    alert("Please enter coordinates in the format: x,y (e.g. -5,-13)");
+    return;
+  }
+
+  const x = parseInt(match[1], 10);
+  const y = parseInt(match[2], 10);
+
+  // Leaflet uses [y, x] for setView in CRS.Simple
+  map.setView([y, x], 2);
+}
+
+//use enter for searches
+document.getElementById('coord-search').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') goToCoordinates();
+});
+
