@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MMService</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/MMService/assets/leaflet.css">
+  <style>
+    #map { height: 100vh; margin: 0; }
+  </style>
+</head>
+<body>
+  <div id="tile-message" style="display:none; text-align:center; margin-top:20vh; font-family:sans-serif;">
+  <h2>🌀 MMService Updating</h2>
+  <p>The map is temporarily unavailable while it is being updated.</p>
+  <p>After it comes back, you will be able to see the new changes!</p>
+  <p>If it doesn't show up after a few minutes, check if you have JavaScript enabled.</p>
+  <p>If JavaScript is on and it still isn't loading, check the <a href="/MMService/status.html">status</a> to check if MMService is working.</p>
+
+  <h2>MMService apaḍēṭa karata āhē</h2>
+  <p>Nakāśā apaḍēṭa hōta asatānā tō tātpuratā anupalabdha āhē.</p>  
+  <p>Tē parata ālyānantara, tumhālā navīna badala pāhatā yētīla!</p>  
+  <p>Jara tē kāhī miniṭānnantara disata nasēla, tara tumhī JavaScript sakṣama kēlē āhē kā tē tapāsā.</p>  
+  <p>Jara jāvāskripṭa cālū asēla āṇi tarīhī tē lōḍa hōta nasēla, tara tapāsā <a href="/MMService/status.html">Sthitī</a> MMService kāma karata āhē kā tē tapāsaṇyāsāṭhī.</p>  
+</div>
+
+
+<script>
+  const testTile = new Image();
+  testTile.src = '/MMService/night-tiles/-1,-1.png';
+  testTile.onerror = () => {
+    document.getElementById('tile-message').style.display = 'block';
+  };
+</script>
+
+  
+  <div id="map"></div>
+  <script src="/MMService/assets/leaflet.js"></script>
+  <script src="night.js"></script>
+</body>
+</html>
