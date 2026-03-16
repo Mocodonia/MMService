@@ -15,7 +15,7 @@ const MocodoniaTileLayer = L.TileLayer.extend({
     getTileUrl: function(coords) {
         // Final URL: Correctly uses negative x/y from the Simple CRS
         const cacheBuster = Date.now();
-        return `/MMService/metro-lines/${coords.x},${coords.y}.png?v=${cacheBuster}`;
+        return `/MMService/metro-tiles/${coords.x},${coords.y}.png?v=${cacheBuster}`;
     }
 });
 
