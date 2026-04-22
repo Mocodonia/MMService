@@ -8,7 +8,6 @@ This project makes Mocodonia have a Google Maps style. See the map as it is from
 These are all the things the project used.
 - Journeymap (for 2d tiles)
 - Leaflet.js (to make the map)
-- Firebase (for the images and reviews)
 - GitHub (for the site itself)
 
 ## Progress
