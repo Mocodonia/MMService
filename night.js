@@ -1,31 +1,36 @@
-// 1. CRITICAL FIX: Add the CRS option to the map initialization
+// 1. Map initialization
 const map = L.map('map', {
-    zoomControl: false,       
-    scrollWheelZoom: false,  
-    doubleClickZoom: false, //this disables the double tap to zoom
+    zoomControl: false,
+    scrollWheelZoom: true,
+    doubleClickZoom: true,
+    touchZoom: true,
     dragging: true,
-    
-    // Use the Simple Coordinate Reference System for flat, non-geographic maps
-    crs: L.CRS.Simple 
-    
-}).setView([0, 0], 2); // Set view center to 0,0 for easier debugging
 
-// 2. Custom Tile Layer (Remains necessary for negative coordinates and cache-busting)
-const MocodoniaTileLayer = L.TileLayer.extend({
-    getTileUrl: function(coords) {
-        // Final URL: Correctly uses negative x/y from the Simple CRS
+    // Use the Simple Coordinate Reference System for flat, non-geographic maps
+    crs: L.CRS.Simple
+}).setView([0, 0], 2);
+
+// 2. Pinned-zoom tile layer (z ignored)
+const PinnedZoomTiles = L.GridLayer.extend({
+    createTile: function (coords, done) {
+        const tile = document.createElement('img');
+        tile.width = 256;
+        tile.height = 256;
+        tile.alt = '';
+
         const cacheBuster = Date.now();
-        return `/MMService/night-tiles/${coords.x},${coords.y}.png?v=${cacheBuster}`;
+        tile.src = `/MMService/night-tiles/${coords.x},${coords.y}.png?v=${cacheBuster}`;
+
+        tile.onload = () => done(null, tile);
+        tile.onerror = () => done(null, tile);
+        return tile;
     }
 });
 
-// 3. Tile Layer Initialization (Lock the zoom and use the custom class)
-new MocodoniaTileLayer({
+// 3. Layer init
+new PinnedZoomTiles({
     attribution: 'MMService Night Mode • Mocodonia',
     tileSize: 256,
-    
-    // Lock the map to zoom level 2 (the scale of your images)
-    minZoom: 2, 
-    maxZoom: 2, 
-    
+    minZoom: 0,
+    maxZoom: 8
 }).addTo(map);
