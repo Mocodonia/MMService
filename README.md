@@ -11,7 +11,7 @@ These are all the things the project used.
 - GitHub (for the site itself)
 
 ## Progress
-The map is now showing the surface, zooming in and out is supported, and clicking on cities is in progress maybe
+The map is now showing the surface, zoom is not possible at the moment, and clicking on cities is in progress maybe
 
 ## Tile Updates
 The tiles will get updated every few days.
